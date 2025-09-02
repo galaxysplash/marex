@@ -1,10 +1,27 @@
-#include <llvm/IR/IRBuilder.h>
-#include <marex/core/Core.h>
+#include <cstdio>
+#include <iostream>
+#include <list>
+#include <matchit.h>
+#include <type_traits>
+#include <variant>
 
-#include <cstdint>
+using matchit::_;
+using matchit::as;
+using matchit::match;
+using matchit::pattern;
 
-auto main(int32_t const argc, char const *argv[]) noexcept -> int32_t {
-  Core::hello_world();
+enum class KeywordKind {
 
-  return 0;
+};
+
+using Token = std::variant<double, int, KeywordKind>;
+
+auto main(const int argc, const char *const *const argv) noexcept -> int {
+  std::list<Token> tokens;
+
+  for (const auto &token : tokens) {
+    match(token)(
+        pattern | as<KeywordKind>(_) = [&]() -> void { printf("test"); },
+        pattern | as<double>(_) = [&]() -> void {  });
+  }
 }

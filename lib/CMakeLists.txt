@@ -1,2 +1,3 @@
-cmake_minimum_required(VERSION 3.25)
-add_subdirectory(core)
+cmake_minimum_required(VERSION 3.28)
+
+add_subdirectory(matchit.cpp)

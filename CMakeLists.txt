@@ -1,13 +1,16 @@
-cmake_minimum_required(VERSION 3.25)
-project(marex)
+cmake_minimum_required(VERSION 3.28)
+project(compiler)
 
-include_directories(include)
-
+add_subdirectory(src)
 add_subdirectory(lib)
 
-file(GLOB SOURCES src/*.cpp)
-add_executable(${PROJECT_NAME} ${SOURCES})
-target_link_libraries(${PROJECT_NAME} PRIVATE core)
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+add_executable(${PROJECT_NAME} src/main.cpp)
 
+# modules
+target_link_libraries(${PROJECT_NAME} PRIVATE lexer token)
 
+# third party
+target_link_libraries(${PROJECT_NAME} PRIVATE matchit)
