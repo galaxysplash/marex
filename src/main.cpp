@@ -1,44 +1,18 @@
-// declarations
-#include <cstdio>
 #include <list>
-#include <matchit.h>
 #include <print>
+#include <type_traits>
 #include <variant>
-
-// imports
-using matchit::_;
-using matchit::as;
-using matchit::match;
-using matchit::pattern;
-
-enum class KeywordKind {
-  And,
-  Or,
-  Not,
-
-  Equals,
-  NotEquals,
-
-  Greater,
-  Smaller,
-
-  If,
-  Colon,
-
-  Assignment,
-
-};
-
-using Token = std::variant<double, int, KeywordKind>;
+#include <matchit/>
+#include "token/Token.h"
 
 auto main(const int argc, const char *const *const argv) noexcept -> int {
-  std::list<Token> tokens;
-
-  const auto f = [&]<typename T>() {};
+  TokenList tokens;
 
   for (const auto &token : tokens) {
-    std::visit(
-        [&]<typename T>(T &&value) {
+    match(tokens)(
+
+    )
+        [&]<typename T>(T &&value) -> void {
           if constexpr (std::is_same_v<T, int>) {
             std::println("int: {}", value);
           }

@@ -1,5 +1,3 @@
 #include "lexer.h"
 
-auto lexer::run() -> void {
-  
-}
+auto Lexer::run() -> void {}
