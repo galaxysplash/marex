@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstddef>
 #include <list>
 #include <string>
 #include <string_view>
@@ -25,7 +26,8 @@ enum class KeywordKind {
 using Identifier = std::string;
 
 namespace literals {
-using str = std::string_view;
+// has to be owner
+using str = std::string;
 
 using f32 = float;
 using f64 = double;
@@ -39,6 +41,8 @@ using u8 = unsigned char;
 using u16 = unsigned short;
 using u32 = unsigned int;
 using u64 = unsigned long;
+
+using usize = std::size_t;
 } // namespace literals
 
 using Token = std::variant<
@@ -49,6 +53,8 @@ using Token = std::variant<
     literals::f32, literals::f64,
     // integers
     literals::i8, literals::i16, literals::i32, literals::i64,
+    // size
+    literals::usize,
 #pragma endregion LITERALS
 
     // keyword

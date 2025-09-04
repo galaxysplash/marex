@@ -1,0 +1,19 @@
+U32 -> U64
+factorial(0) = 1
+factorial(x) = x * factorial(x - 1)
+
+# for one liners ´ret´ is implicit
+square(x: F64): F64 = x * x 
+
+main(args: List[String]): I32 =
+  xs: [I32; 3] = [10, 2, 3]
+
+  for i in 1..100:
+    print("i {}", i)
+
+  for x in xs:
+    print("x: {}", x)
+  
+  print("Hi!")
+
+  ret 0

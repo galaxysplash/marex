@@ -1,27 +1,25 @@
-#include <list>
-#include <print>
-#include <type_traits>
-#include <variant>
-#include <matchit/>
+#include <matchit.h>
+
+#include <cstdio>
+
 #include "token/Token.h"
+
+using matchit::_;
+using matchit::as;
+using matchit::match;
+using matchit::pattern;
 
 auto main(const int argc, const char *const *const argv) noexcept -> int {
   TokenList tokens;
 
-  for (const auto &token : tokens) {
-    match(tokens)(
+  for (const Token &token : tokens) {
+    match(token)( //
+        pattern | as<literals::f32>(_) = [&]() -> void {
 
-    )
-        [&]<typename T>(T &&value) -> void {
-          if constexpr (std::is_same_v<T, int>) {
-            std::println("int: {}", value);
-          }
-          if constexpr (std::is_same_v<T, double>) {
-            std::println("double: {}", value);
-          }
-          if constexpr (std::is_same_v<T, KeywordKind>) {
-          }
         },
-        token);
+        pattern | _ = [&]() -> void {
+
+        } //
+    );
   }
 }
